@@ -28,8 +28,7 @@ or appearance tags needed, so it also works for original characters.
 ## Gallery
 
 Every image below used the prompt `masterpiece, best quality, score_7, newest, highres, absurdres, safe, <gender>, solo, <scene>` with the scene tags shown, the
-reference image on the left, and default settings (Euler 28 steps, cfg 4.5, reference guidance 4.5, APG).
-Seeds were not cherry-picked.
+reference image on the left, and Euler 28 steps, cfg 4.5, reference guidance 4.5 + APG, context detailer LoRA 0.3, base slider LoRA 0.6, Anima Safe PAG (block 18, scale 1.3, 0.2-0.9). Seeds were not cherry-picked.
 
 <table>
 <tr><td rowspan="2" align="center" valign="middle" width="25%"><img src="docs/showcase/ref_man.jpg" width="100%"><br><b>Reference A</b><br><sub>input image</sub></td><td align="center" valign="top" width="25%"><img src="docs/showcase/man_night_rain.jpg" width="100%"><br><sub><code>full body, walking, hands in pockets, city, street, night, rain</code></sub></td><td align="center" valign="top" width="25%"><img src="docs/showcase/man_cafe.jpg" width="100%"><br><sub><code>upper body, sitting, holding cup, drinking, cafe, indoors, window, sunlight</code></sub></td><td align="center" valign="top" width="25%"><img src="docs/showcase/man_beach.jpg" width="100%"><br><sub><code>cowboy shot, looking at viewer, smile, beach, ocean, sunset</code></sub></td></tr>
@@ -109,6 +108,7 @@ Workflows: [`anima_ref_adapter.json`](workflows/anima_ref_adapter.json) (basic) 
 | `ref_guidance` | 4.5 - 6 | 1 = weak and cheaper; higher = more character detail and style, more saturation |
 | `correction` | `apg` | or `rescale` (phi 0.5) |
 | prompt | quality + gender + `solo` + scene tags | no character name, artist tag or appearance tags |
+| extras (optional) | Anima context-detailer LoRA ~0.3, base-slider LoRA ~0.6, Anima Safe PAG | used for the gallery; ordinary LoRAs go in front of the adapter loader |
 
 <details>
 <summary><b>Limitations</b></summary>
