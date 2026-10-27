@@ -42,11 +42,23 @@ reference image on the left, and Euler 28 steps, cfg 4.5, reference guidance 4.5
 
 ### Unseen characters
 
-The adapter was trained on 300 characters; these were held out.
+These characters were **excluded from training**. Each row: the reference image, the adapter's
+result for a different scene, the same scene-only prompt without the adapter (a generic character), and
+what the base model draws when the prompt also names the character with its appearance tags.
 
-<img src="docs/figures/fig2_heldout.jpg" width="100%">
+<img src="docs/figures/fig2_heldout.jpg" width="100%" alt="held-out characters">
 
-<sub>reference &nbsp;·&nbsp; adapter with a scene-only prompt &nbsp;·&nbsp; same prompt without the adapter &nbsp;·&nbsp; image generated with the full character tags</sub>
+<details>
+<summary>Scene prompts used in this figure</summary>
+
+| character | scene tags |
+|---|---|
+| Tohru | `full body, looking at viewer, heart hands, crying, simple background, white background` |
+| Eternity Larva | `full body, looking at viewer, against wall, closed eyes, gradient background, sunlight` |
+| Meiko | `portrait, from side, writing, crying, beach, ocean, light rays` |
+| Crocodile | `upper body, from below, drinking, sad, bookshelf, indoors` |
+
+</details>
 
 ## How it works
 

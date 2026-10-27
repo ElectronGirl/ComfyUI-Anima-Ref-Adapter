@@ -1,0 +1,62 @@
+[
+ {
+  "name": "held_out_g000184",
+  "figure": "fig2_heldout",
+  "character": [
+   "Tohru",
+   "maidragon"
+  ],
+  "split": "held_out",
+  "prompt": "masterpiece, best quality, score_7, newest, highres, absurdres, safe, 1girl, solo, full body, looking at viewer, heart hands, crying, simple background, white background"
+ },
+ {
+  "name": "held_out_g000183",
+  "figure": "fig2_heldout",
+  "character": [
+   "Eternity Larva",
+   ""
+  ],
+  "split": "held_out",
+  "prompt": "masterpiece, best quality, score_7, newest, highres, absurdres, safe, 1girl, solo, full body, looking at viewer, against wall, closed eyes, gradient background, sunlight"
+ },
+ {
+  "name": "held_out_g000056",
+  "figure": "fig2_heldout",
+  "character": [
+   "Meiko",
+   "vocaloid"
+  ],
+  "split": "held_out",
+  "prompt": "masterpiece, best quality, score_7, newest, highres, absurdres, safe, 1girl, solo, portrait, from side, writing, crying, beach, ocean, light rays"
+ },
+ {
+  "name": "held_out_g000204",
+  "figure": "fig2_heldout",
+  "character": [
+   "Crocodile",
+   "one piece"
+  ],
+  "split": "held_out",
+  "prompt": "masterpiece, best quality, score_7, newest, highres, absurdres, safe, 1boy, solo, upper body, from below, drinking, sad, bookshelf, indoors"
+ },
+ {
+  "name": "held_out_g000030",
+  "figure": "fig6_failures",
+  "character": [
+   "Kamado Tanjirou",
+   ""
+  ],
+  "split": "held_out",
+  "prompt": "masterpiece, best quality, score_7, newest, highres, absurdres, safe, 1boy, solo, portrait, fighting stance, open mouth, smile, beach, ocean"
+ },
+ {
+  "name": "seen_g000001",
+  "figure": "fig6_failures",
+  "character": [
+   "Battleship Princess",
+   ""
+  ],
+  "split": "seen",
+  "prompt": "masterpiece, best quality, score_7, newest, highres, absurdres, safe, 1girl, solo, upper body, looking at viewer, hand up, grin, desert"
+ }
+]
