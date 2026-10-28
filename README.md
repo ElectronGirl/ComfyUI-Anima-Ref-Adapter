@@ -120,7 +120,7 @@ Workflows: [`anima_ref_adapter.json`](workflows/anima_ref_adapter.json) (basic) 
 
 | | recommended | notes |
 |---|---|---|
-| base model | Anima base v1.0 | no turbo LoRA (the adapter was trained on the base model) |
+| base model | Anima base v1.0 | Anima turbo LoRA also works (load it in front of the adapter loader and use its usual steps and cfg); the adapter itself was trained on the base model |
 | compute | bf16 (`ModelComputeDtype`) | Anima overflows in fp16 |
 | sampler | Euler, 28-30 steps, `simple` | single-resolution samplers; SamplerSPEED's half-resolution stage is unreliable |
 | `cfg` | 4.5 | text guidance |
