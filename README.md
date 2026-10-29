@@ -11,6 +11,7 @@
 [![Report](https://img.shields.io/badge/%F0%9F%93%84%20report-method%20%26%20results-8a63d2)](https://github.com/ElectronGirl/ComfyUI-Anima-Ref-Adapter/blob/main/docs/report.md)
 [![Code license](https://img.shields.io/badge/code-Apache--2.0-2ea44f)](https://github.com/ElectronGirl/ComfyUI-Anima-Ref-Adapter/blob/main/LICENSE)
 [![Weights license](https://img.shields.io/badge/weights-CircleStone%20Non--Commercial-555)](https://huggingface.co/ElectronGirl/anima-ref-adapter/blob/main/LICENSE.md)
+[![Ko-fi](https://img.shields.io/badge/Ko--fi-support%20training-ff5e5b?logo=ko-fi&logoColor=white)](https://ko-fi.com/electrongirl)
 
 </div>
 
@@ -26,13 +27,14 @@ images side by side and say in the prompt who is on which side.
 > **Development is paused for lack of funding.** Further training is not possible for now, and the planned
 > separate character and style references are not released. The training code, data generation and experiment log are public in
 > **[ElectronGirl/anima-ref-adapter-research](https://github.com/ElectronGirl/anima-ref-adapter-research)**.
+> To support further training: **[Ko-fi](https://ko-fi.com/electrongirl)**.
 
 ## What's new in v2
 
-- **1.6x faster than the pilot.** 65 s instead of 105 s per image on an RTX 3060 Ti (832x1216, 30 steps,
-  same settings; 33 s without a reference), and 2.1x faster per sampling step on an RTX PRO 6000. The
-  reference is encoded once per image instead of being recomputed at every step
-  ([details](#v2-rank-64-asymmetric-attention)).
+- **About 2x faster than the pilot.** 2.1x faster per sampling step on an RTX PRO 6000. On an RTX 3060 Ti
+  (832x1216, 30 steps, same settings) an image takes 65 s instead of 105 s: the reference adds 32 s instead
+  of 72 s to the 33 s without it. The reference is encoded once per image instead of being recomputed at
+  every step ([details](#v2-rank-64-asymmetric-attention)).
 - **More training data**: 15,600 images of 2,300 characters in 1,952 artist styles (the pilot: 3,600 images,
   300 characters), at rank 64.
 - **One node**: Anima Ref Adapter drops into the standard Anima workflow and works with KSampler and any
@@ -228,6 +230,11 @@ Details, data and failure modes of the pilot: **[technical report](docs/report.m
 
 Development is paused for lack of funding. The training code is public:
 [ElectronGirl/anima-ref-adapter-research](https://github.com/ElectronGirl/anima-ref-adapter-research).
+
+## Support
+
+Development is paused for lack of funding. If the adapter is useful to you, you can support further
+training (longer runs, separate character and style references) on **[Ko-fi](https://ko-fi.com/electrongirl)**.
 
 ## License
 
