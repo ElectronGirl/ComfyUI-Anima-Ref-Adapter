@@ -13,7 +13,9 @@
 [![Weights license](https://img.shields.io/badge/weights-CircleStone%20Non--Commercial-555)](https://huggingface.co/ElectronGirl/anima-ref-adapter/blob/main/LICENSE.md)
 [![Ko-fi](https://img.shields.io/badge/Ko--fi-support%20training-ff5e5b?logo=ko-fi&logoColor=white)](https://ko-fi.com/electrongirl)
 
-[Showcase](#showcase) · [Quick start](#quick-start) · [Speed](#speed-and-compatibility) · [Nodes](#nodes) · [How it works](#how-it-works) · [Training code](https://github.com/ElectronGirl/anima-ref-adapter-research)
+[Showcase](#showcase) · [Quick start](#quick-start) · [Guide](docs/guide.en.md) · [Speed](#speed-and-compatibility) · [Nodes](#nodes) · [How it works](#how-it-works) · [Training code](https://github.com/ElectronGirl/anima-ref-adapter-research)
+
+**English** · [한국어](README.ko.md) · [日本語](README.ja.md)
 
 </div>
 
@@ -88,6 +90,8 @@ git clone https://github.com/ElectronGirl/ComfyUI-Anima-Ref-Adapter.git
 
 **In your own workflow:** put **Anima Ref Adapter** between the model (after any other LoRAs) and the
 sampler, and connect the VAE and the reference image.
+
+Step by step, with prompt tips and troubleshooting: **[user guide](docs/guide.en.md)**.
 
 ## Speed and compatibility
 
