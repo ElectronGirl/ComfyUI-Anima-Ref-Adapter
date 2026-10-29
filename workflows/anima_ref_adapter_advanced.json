@@ -1,6 +1,6 @@
 {
- "last_node_id": 20,
- "last_link_id": 22,
+ "last_node_id": 19,
+ "last_link_id": 19,
  "nodes": [
   {
    "id": 1,
@@ -31,7 +31,7 @@
     "Node name for S&R": "UNETLoader"
    },
    "widgets_values": [
-    "anima_baseV10.safetensors",
+    "anima-base-v1.0.safetensors",
     "default"
    ],
    "title": "Base model"
@@ -57,8 +57,8 @@
      "type": "CLIP",
      "slot_index": 0,
      "links": [
-      6,
-      7
+      4,
+      5
      ]
     }
    ],
@@ -92,8 +92,8 @@
      "type": "VAE",
      "slot_index": 0,
      "links": [
-      5,
-      19
+      3,
+      17
      ]
     }
    ],
@@ -101,7 +101,7 @@
     "Node name for S&R": "VAELoader"
    },
    "widgets_values": [
-    "qwenImageVAE_qwenImageVAE.safetensors"
+    "qwen_image_vae.safetensors"
    ]
   },
   {
@@ -131,7 +131,8 @@
      "type": "MODEL",
      "slot_index": 0,
      "links": [
-      2
+      6,
+      10
      ]
     }
    ],
@@ -139,88 +140,11 @@
     "Node name for S&R": "AnimaRefAdapterLoader"
    },
    "widgets_values": [
-    "anima_ref_adapter_pilot_r32.safetensors",
+    "anima_ref_adapter_v2_r64.safetensors",
     1.0,
     1.0
    ],
    "title": "Ref adapter LoRA"
-  },
-  {
-   "id": 5,
-   "type": "ModelComputeDtype",
-   "pos": [
-    380,
-    190
-   ],
-   "size": [
-    330,
-    60
-   ],
-   "flags": {},
-   "order": 4,
-   "mode": 0,
-   "inputs": [
-    {
-     "name": "model",
-     "type": "MODEL",
-     "link": 2
-    }
-   ],
-   "outputs": [
-    {
-     "name": "MODEL",
-     "type": "MODEL",
-     "slot_index": 0,
-     "links": [
-      3
-     ]
-    }
-   ],
-   "properties": {
-    "Node name for S&R": "ModelComputeDtype"
-   },
-   "widgets_values": [
-    "bf16"
-   ]
-  },
-  {
-   "id": 6,
-   "type": "PathchSageAttentionKJ",
-   "pos": [
-    380,
-    290
-   ],
-   "size": [
-    330,
-    80
-   ],
-   "flags": {},
-   "order": 5,
-   "mode": 0,
-   "inputs": [
-    {
-     "name": "model",
-     "type": "MODEL",
-     "link": 3
-    }
-   ],
-   "outputs": [
-    {
-     "name": "MODEL",
-     "type": "MODEL",
-     "slot_index": 0,
-     "links": [
-      22
-     ]
-    }
-   ],
-   "properties": {
-    "Node name for S&R": "PathchSageAttentionKJ"
-   },
-   "widgets_values": [
-    "auto",
-    false
-   ]
   },
   {
    "id": 7,
@@ -234,7 +158,7 @@
     380
    ],
    "flags": {},
-   "order": 6,
+   "order": 4,
    "mode": 0,
    "inputs": [],
    "outputs": [
@@ -243,7 +167,7 @@
      "type": "IMAGE",
      "slot_index": 0,
      "links": [
-      4
+      2
      ]
     },
     {
@@ -274,18 +198,18 @@
     150
    ],
    "flags": {},
-   "order": 7,
+   "order": 5,
    "mode": 0,
    "inputs": [
     {
      "name": "image",
      "type": "IMAGE",
-     "link": 4
+     "link": 2
     },
     {
      "name": "vae",
      "type": "VAE",
-     "link": 5
+     "link": 3
     }
    ],
    "outputs": [
@@ -294,7 +218,7 @@
      "type": "LATENT",
      "slot_index": 0,
      "links": [
-      11
+      9
      ]
     },
     {
@@ -302,7 +226,7 @@
      "type": "LATENT",
      "slot_index": 1,
      "links": [
-      17
+      15
      ]
     },
     {
@@ -310,7 +234,7 @@
      "type": "IMAGE",
      "slot_index": 2,
      "links": [
-      21
+      19
      ]
     }
    ],
@@ -336,13 +260,13 @@
     200
    ],
    "flags": {},
-   "order": 8,
+   "order": 6,
    "mode": 0,
    "inputs": [
     {
      "name": "clip",
      "type": "CLIP",
-     "link": 6
+     "link": 4
     }
    ],
    "outputs": [
@@ -351,7 +275,7 @@
      "type": "CONDITIONING",
      "slot_index": 0,
      "links": [
-      9
+      7
      ]
     }
    ],
@@ -359,7 +283,7 @@
     "Node name for S&R": "CLIPTextEncode"
    },
    "widgets_values": [
-    "masterpiece, best quality, score_7, newest, highres, absurdres, safe, 1girl, solo, full body, walking, waving, open mouth, smile, city, street, night"
+    "masterpiece, best quality, score_7, safe, 1girl, solo, cowboy shot, sitting, cafe, holding cup, smile, looking at viewer, indoors, window, day"
    ],
    "title": "Positive (scene only)"
   },
@@ -375,13 +299,13 @@
     160
    ],
    "flags": {},
-   "order": 9,
+   "order": 7,
    "mode": 0,
    "inputs": [
     {
      "name": "clip",
      "type": "CLIP",
-     "link": 7
+     "link": 5
     }
    ],
    "outputs": [
@@ -390,7 +314,7 @@
      "type": "CONDITIONING",
      "slot_index": 0,
      "links": [
-      10
+      8
      ]
     }
    ],
@@ -398,7 +322,7 @@
     "Node name for S&R": "CLIPTextEncode"
    },
    "widgets_values": [
-    "worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, chromatic aberration, bad anatomy, bad hands, extra arms, extra fingers, missing fingers, text, watermark, signature, artist name, multiple views, split screen, comic, 2koma, 4koma"
+    "worst quality, low quality, score_1, score_2, score_3, artist name, blurry, jpeg artifacts, chromatic aberration"
    ],
    "title": "Negative"
   },
@@ -414,28 +338,28 @@
     170
    ],
    "flags": {},
-   "order": 10,
+   "order": 8,
    "mode": 0,
    "inputs": [
     {
      "name": "model",
      "type": "MODEL",
-     "link": 8
+     "link": 6
     },
     {
      "name": "positive",
      "type": "CONDITIONING",
-     "link": 9
+     "link": 7
     },
     {
      "name": "negative",
      "type": "CONDITIONING",
-     "link": 10
+     "link": 8
     },
     {
      "name": "ref_latent",
      "type": "LATENT",
-     "link": 11
+     "link": 9
     }
    ],
    "outputs": [
@@ -444,7 +368,7 @@
      "type": "GUIDER",
      "slot_index": 0,
      "links": [
-      14
+      12
      ]
     }
    ],
@@ -455,7 +379,10 @@
     4.5,
     4.5,
     "apg",
-    0.5
+    0.5,
+    0.0,
+    1.0,
+    "reference, no extra guidance"
    ]
   },
   {
@@ -470,7 +397,7 @@
     60
    ],
    "flags": {},
-   "order": 11,
+   "order": 9,
    "mode": 0,
    "inputs": [],
    "outputs": [
@@ -479,7 +406,7 @@
      "type": "SAMPLER",
      "slot_index": 0,
      "links": [
-      15
+      13
      ]
     }
    ],
@@ -487,7 +414,7 @@
     "Node name for S&R": "KSamplerSelect"
    },
    "widgets_values": [
-    "euler"
+    "er_sde"
    ]
   },
   {
@@ -502,13 +429,13 @@
     110
    ],
    "flags": {},
-   "order": 12,
+   "order": 10,
    "mode": 0,
    "inputs": [
     {
      "name": "model",
      "type": "MODEL",
-     "link": 12
+     "link": 10
     }
    ],
    "outputs": [
@@ -517,7 +444,7 @@
      "type": "SIGMAS",
      "slot_index": 0,
      "links": [
-      16
+      14
      ]
     }
    ],
@@ -542,7 +469,7 @@
     90
    ],
    "flags": {},
-   "order": 13,
+   "order": 11,
    "mode": 0,
    "inputs": [],
    "outputs": [
@@ -551,7 +478,7 @@
      "type": "NOISE",
      "slot_index": 0,
      "links": [
-      13
+      11
      ]
     }
    ],
@@ -575,33 +502,33 @@
     130
    ],
    "flags": {},
-   "order": 14,
+   "order": 12,
    "mode": 0,
    "inputs": [
     {
      "name": "noise",
      "type": "NOISE",
-     "link": 13
+     "link": 11
     },
     {
      "name": "guider",
      "type": "GUIDER",
-     "link": 14
+     "link": 12
     },
     {
      "name": "sampler",
      "type": "SAMPLER",
-     "link": 15
+     "link": 13
     },
     {
      "name": "sigmas",
      "type": "SIGMAS",
-     "link": 16
+     "link": 14
     },
     {
      "name": "latent_image",
      "type": "LATENT",
-     "link": 17
+     "link": 15
     }
    ],
    "outputs": [
@@ -610,7 +537,7 @@
      "type": "LATENT",
      "slot_index": 0,
      "links": [
-      18
+      16
      ]
     },
     {
@@ -637,18 +564,18 @@
     50
    ],
    "flags": {},
-   "order": 15,
+   "order": 13,
    "mode": 0,
    "inputs": [
     {
      "name": "samples",
      "type": "LATENT",
-     "link": 18
+     "link": 16
     },
     {
      "name": "vae",
      "type": "VAE",
-     "link": 19
+     "link": 17
     }
    ],
    "outputs": [
@@ -657,7 +584,7 @@
      "type": "IMAGE",
      "slot_index": 0,
      "links": [
-      20
+      18
      ]
     }
    ],
@@ -678,13 +605,13 @@
     640
    ],
    "flags": {},
-   "order": 16,
+   "order": 14,
    "mode": 0,
    "inputs": [
     {
      "name": "images",
      "type": "IMAGE",
-     "link": 20
+     "link": 18
     }
    ],
    "outputs": [],
@@ -707,13 +634,13 @@
     520
    ],
    "flags": {},
-   "order": 17,
+   "order": 15,
    "mode": 0,
    "inputs": [
     {
      "name": "images",
      "type": "IMAGE",
-     "link": 21
+     "link": 19
     }
    ],
    "outputs": [],
@@ -722,53 +649,6 @@
    },
    "widgets_values": [],
    "title": "Reference as fed (letterboxed)"
-  },
-  {
-   "id": 20,
-   "type": "AnimaSafePAG",
-   "pos": [
-    380,
-    650
-   ],
-   "size": [
-    330,
-    230
-   ],
-   "flags": {},
-   "order": 18,
-   "mode": 0,
-   "inputs": [
-    {
-     "name": "model",
-     "type": "MODEL",
-     "link": 22
-    }
-   ],
-   "outputs": [
-    {
-     "name": "MODEL",
-     "type": "MODEL",
-     "slot_index": 0,
-     "links": [
-      8,
-      12
-     ]
-    }
-   ],
-   "properties": {
-    "Node name for S&R": "AnimaSafePAG"
-   },
-   "widgets_values": [
-    1.3,
-    "18",
-    0.75,
-    "",
-    0.3,
-    0.8,
-    0.2,
-    "full"
-   ],
-   "title": "Anima Safe PAG"
   },
   {
    "id": 19,
@@ -782,14 +662,14 @@
     620
    ],
    "flags": {},
-   "order": 19,
+   "order": 16,
    "mode": 0,
    "inputs": [],
    "outputs": [],
    "title": "How to use",
    "properties": {},
    "widgets_values": [
-    "## Anima Reference Adapter\n\nTakes the **character and drawing style** from the reference image; **pose, background and framing** come from the prompt.\n\n- **Prompt**: no character name, artist tag or appearance/outfit tags. Write quality tags, gender, `solo` and scene tags (framing, pose, expression, background, lighting). Adding a few appearance tags is fine.\n- **Anima Ref Latent**: fits the reference into the output size (aspect kept, white padding). The output size is set here (it also returns the empty latent).\n- **Anima Ref Guider**\n  - `cfg`: text guidance (4.5)\n  - `ref_guidance`: reference guidance. 1 = reference in both CFG branches (weak); 4.5-6 recommended. Higher gives more character detail and style, and more saturation.\n  - `correction`: `apg` (default) or `rescale` (phi 0.5) tames over-saturation at high guidance.\n- **Anima Ref Adapter Loader**: the adapter LoRA. Keep `ref_offset_h` at 1.0 (training value).\n- Base: Anima base v1.0 without the turbo LoRA (the adapter was trained on the base model), bf16 compute, SageAttention, euler 30 steps.\n- With ref_guidance != 1 each step runs the model 3 times (1.5x a normal CFG step).\n\nThis is a pilot adapter (300 characters, 2,000 steps): small patterns, scars and skin tones are weak.\n\n### PAG\n- **Anima Safe PAG** adds detail from the difference to a prediction with block 18 self-attention blurred (scale 1.3, 0.3-0.8 of the schedule). One extra model call per step while active.\n- **Avoid SamplerSPEED for now**: its half-resolution stage needs a half-size reference, which this adapter never saw in training; results are unreliable.\n"
+    "## Anima Reference Adapter (advanced)\n\nThe separate nodes, for the pilot adapter and for options the one-node workflow does not expose.\n\n- **Anima Ref Latent** fits the reference into the output size (white letterbox) and returns the empty latent for that size. The pilot needs the reference at the output size; v2 reads any size.\n- **Anima Ref Guider** (`SamplerCustomAdvanced`): `cfg`, `ref_guidance`, `correction`, and the window `ref_start` / `ref_end` with `outside` = keep the reference without extra guidance, or drop it.\n- **Anima Ref Adapter Loader**: keep `ref_offset_h` at 1.0 (training value).\n"
    ],
    "color": "#432",
    "bgcolor": "#653"
@@ -806,22 +686,6 @@
   ],
   [
    2,
-   4,
-   0,
-   5,
-   0,
-   "MODEL"
-  ],
-  [
-   3,
-   5,
-   0,
-   6,
-   0,
-   "MODEL"
-  ],
-  [
-   4,
    7,
    0,
    8,
@@ -829,7 +693,7 @@
    "IMAGE"
   ],
   [
-   5,
+   3,
    3,
    0,
    8,
@@ -837,7 +701,7 @@
    "VAE"
   ],
   [
-   6,
+   4,
    2,
    0,
    9,
@@ -845,7 +709,7 @@
    "CLIP"
   ],
   [
-   7,
+   5,
    2,
    0,
    10,
@@ -853,15 +717,15 @@
    "CLIP"
   ],
   [
-   8,
-   20,
+   6,
+   4,
    0,
    11,
    0,
    "MODEL"
   ],
   [
-   9,
+   7,
    9,
    0,
    11,
@@ -869,7 +733,7 @@
    "CONDITIONING"
   ],
   [
-   10,
+   8,
    10,
    0,
    11,
@@ -877,7 +741,7 @@
    "CONDITIONING"
   ],
   [
-   11,
+   9,
    8,
    0,
    11,
@@ -885,15 +749,15 @@
    "LATENT"
   ],
   [
-   12,
-   20,
+   10,
+   4,
    0,
    13,
    0,
    "MODEL"
   ],
   [
-   13,
+   11,
    14,
    0,
    15,
@@ -901,7 +765,7 @@
    "NOISE"
   ],
   [
-   14,
+   12,
    11,
    0,
    15,
@@ -909,7 +773,7 @@
    "GUIDER"
   ],
   [
-   15,
+   13,
    12,
    0,
    15,
@@ -917,7 +781,7 @@
    "SAMPLER"
   ],
   [
-   16,
+   14,
    13,
    0,
    15,
@@ -925,7 +789,7 @@
    "SIGMAS"
   ],
   [
-   17,
+   15,
    8,
    1,
    15,
@@ -933,7 +797,7 @@
    "LATENT"
   ],
   [
-   18,
+   16,
    15,
    0,
    16,
@@ -941,7 +805,7 @@
    "LATENT"
   ],
   [
-   19,
+   17,
    3,
    0,
    16,
@@ -949,7 +813,7 @@
    "VAE"
   ],
   [
-   20,
+   18,
    16,
    0,
    17,
@@ -957,20 +821,12 @@
    "IMAGE"
   ],
   [
-   21,
+   19,
    8,
    2,
    18,
    0,
    "IMAGE"
-  ],
-  [
-   22,
-   6,
-   0,
-   20,
-   0,
-   "MODEL"
   ]
  ],
  "groups": [],

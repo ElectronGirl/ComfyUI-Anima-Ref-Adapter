@@ -1,6 +1,6 @@
 [project]
 name = "comfyui-anima-ref-adapter"
-version = "0.1.0"
+version = "0.2.0"
 description = "Reference-image character and style transfer for Anima: offset-RoPE reference frame + LoRA, with reference guidance and APG."
 license = { file = "LICENSE" }
 dependencies = []

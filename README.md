@@ -19,17 +19,132 @@
 Give [Anima](https://huggingface.co/circlestone-labs/Anima) a single reference image and a prompt that only
 describes the scene. The adapter keeps **who** is drawn (hair, eyes, outfit, accessories) and some of **how**
 it is drawn, while **pose, background and composition follow the prompt**. No character name, artist tag
-or appearance tags needed, so it also works for original characters.
+or appearance tags needed, so it also works for original characters. Two characters work too: put their
+images side by side and say in the prompt who is on which side.
 
-> [!NOTE]
-> Pilot release (300 training characters, 2,000 steps). A larger character x style dataset is being
-> generated; see the [report](docs/report.md#7-ongoing-work).
+> [!IMPORTANT]
+> **Development is paused for lack of funding.** Further training is not possible for now, and the planned
+> separate character and style references are not released. The training code, data generation and experiment log are public in
+> **[ElectronGirl/anima-ref-adapter-research](https://github.com/ElectronGirl/anima-ref-adapter-research)**.
 
-> [!TIP]
-> **Coming soon: separate character and style references.** Take the character from one image and the
-> drawing style from another, or either one alone. See the [roadmap](#roadmap).
+## What's new in v2
 
-## Gallery
+- **1.6x faster than the pilot.** 65 s instead of 105 s per image on an RTX 3060 Ti (832x1216, 30 steps,
+  same settings; 33 s without a reference), and 2.1x faster per sampling step on an RTX PRO 6000. The
+  reference is encoded once per image instead of being recomputed at every step
+  ([details](#v2-rank-64-asymmetric-attention)).
+- **More training data**: 15,600 images of 2,300 characters in 1,952 artist styles (the pilot: 3,600 images,
+  300 characters), at rank 64.
+- **One node**: Anima Ref Adapter drops into the standard Anima workflow and works with KSampler and any
+  sampler; the weights download on first use.
+- **Two characters** from two references side by side.
+
+## Gallery (v2)
+
+The [one-node workflow](workflows/anima_ref_adapter.json) with Anima's default settings: er_sde, 30 steps, cfg 4.5,
+`ref_guidance` 4.5 + APG; prompt `masterpiece, best quality, score_7, safe, 1girl, solo, <scene>` and the
+negative prompt from the Anima model card. No other LoRAs. One seed per image, not cherry-picked.
+
+<table>
+<tr><td align="center" valign="middle" width="25%"><img src="docs/showcase/v2/ref_police.jpg" width="100%"><br><b>reference</b></td><td align="center" valign="top" width="25%"><img src="docs/showcase/v2/police_cafe.jpg" width="100%"><br><sub><code>cowboy shot, sitting, cafe, holding cup, coffee, smile, looking at viewer, indoors, window, day</code></sub></td><td align="center" valign="top" width="50%"><img src="docs/showcase/v2/police_run.jpg" width="100%"><br><sub><code>full body, running, motion blur, from side, determined, city, street, night, rain</code></sub></td></tr>
+<tr><td align="center" valign="middle" width="25%"><img src="docs/showcase/v2/ref_mecha.jpg" width="100%"><br><b>reference</b></td><td align="center" valign="top" width="25%"><img src="docs/showcase/v2/mecha_fly.jpg" width="100%"><br><sub><code>full body, flying, from below, sky, clouds, sunlight, dynamic pose, outstretched arm</code></sub></td><td align="center" valign="top" width="25%"><img src="docs/showcase/v2/mecha_sit.jpg" width="100%"><br><sub><code>sitting, on floor, hugging own legs, sleepy, hangar, indoors, dim lighting</code></sub></td><td></td></tr>
+<tr><td align="center" valign="middle" width="25%"><img src="docs/showcase/v2/ref_swim.jpg" width="100%"><br><b>reference</b></td><td align="center" valign="top" width="25%"><img src="docs/showcase/v2/swim_beach.jpg" width="100%"><br><sub><code>cowboy shot, beach, ocean, sunset, wind, hand on own hat, sun hat, smile, looking back</code></sub></td><td align="center" valign="top" width="50%"><img src="docs/showcase/v2/swim_pool.jpg" width="100%"><br><sub><code>upper body, sitting, poolside, legs in water, splashing, laughing, day</code></sub></td></tr>
+</table>
+
+### Two characters
+
+Put the two references side by side in one image (core **Image Stitch** node) and write in the prompt who
+is on the left and who is on the right, with a few words each. Use `2girls` or `1boy, 1girl` instead of
+`solo`, and a landscape output. [Workflow](workflows/anima_ref_adapter_two_characters.json).
+
+<table>
+<tr><td align="center" valign="middle" width="40%"><img src="docs/showcase/v2/ref_police_mecha.jpg" width="100%"><br><b>reference: two images side by side</b></td><td align="center" valign="top" width="60%"><img src="docs/showcase/v2/duo_police_mecha.jpg" width="100%"><br><sub><code>2girls, the girl on the left is a policewoman with black hair over one eye, the girl on the right is a mecha girl with aqua hair and mechanical wings, standing side by side, peace sign, smile, city, street, day</code></sub></td></tr>
+<tr><td align="center" valign="middle" width="40%"><img src="docs/showcase/v2/ref_police_swim.jpg" width="100%"><br><b>reference: two images side by side</b></td><td align="center" valign="top" width="60%"><img src="docs/showcase/v2/duo_police_swim.jpg" width="100%"><br><sub><code>2girls, the girl on the left is a policewoman with black hair over one eye, the girl on the right is a girl with short black hair in a blue frilled bikini, sitting together on a bench, eating ice cream, park, day</code></sub></td></tr>
+<tr><td align="center" valign="middle" width="40%"><img src="docs/showcase/v2/ref_mecha_swim.jpg" width="100%"><br><b>reference: two images side by side</b></td><td align="center" valign="top" width="60%"><img src="docs/showcase/v2/duo_mecha_swim.jpg" width="100%"><br><sub><code>2girls, the girl on the left is a mecha girl with aqua hair and mechanical wings, the girl on the right is a girl with short black hair in a blue frilled bikini, high five, beach, ocean, day</code></sub></td></tr>
+</table>
+
+## Quick start
+
+```bash
+cd ComfyUI/custom_nodes
+git clone https://github.com/ElectronGirl/ComfyUI-Anima-Ref-Adapter.git
+```
+
+1. The adapter weights download by themselves: the first run with `anima_ref_adapter_v2_r64.safetensors`
+   selected fetches it from [ElectronGirl/anima-ref-adapter](https://huggingface.co/ElectronGirl/anima-ref-adapter) into `ComfyUI/models/loras/` (183 MB). To install
+   it by hand, [download it](https://huggingface.co/ElectronGirl/anima-ref-adapter/blob/main/anima_ref_adapter_v2_r64.safetensors) into the same folder.
+2. Anima base v1.0, the Qwen3-0.6B text encoder and the Qwen-Image VAE come from
+   [circlestone-labs/Anima](https://huggingface.co/circlestone-labs/Anima).
+3. Restart ComfyUI and open `workflows/anima_ref_adapter.json`. It is the Anima text-to-image workflow with
+   one extra node and needs no other custom nodes.
+4. Load a reference image, write a prompt that describes only the scene, queue.
+
+To add the adapter to your own workflow, put **Anima Ref Adapter** between the model (after any other
+LoRAs) and the sampler, and connect the VAE and the reference image. It works with the stock **KSampler**
+and any other sampler or guider.
+
+## Speed and compatibility
+
+RTX 3060 Ti 8 GB (fp16), 832x1216, one reference; the faster of two runs:
+
+| setup | time per image |
+|---|---|
+| Anima base, er_sde 30 steps, cfg 4.5, **no reference** | 33 s |
+| + pilot adapter, `ref_guidance` 4.5 | 105 s |
+| **+ v2 adapter**, `ref_guidance` 4.5 | **65-67 s** |
+| `ref_guidance` 1 (no extra model call) | 50 s |
+| + SageAttention ([KJNodes](https://github.com/kijai/ComfyUI-KJNodes) Patch Sage Attention) | 62 s |
+| + EasyCache (core) | 63 s |
+| `ref_end` 0.6 | 62 s |
+| **turbo LoRA** (strength 1), 10 steps, cfg 1, `ref_guidance` 1 | **11 s** |
+
+<img src="docs/figures/v2_compat.jpg" width="100%" alt="the same seed with each speed-up">
+
+- SageAttention, EasyCache and `ref_end` 0.6 each save about 7% on this GPU and give nearly the same image.
+- A **turbo LoRA** for Anima base (tested: `anima-turbo-lora-v0.2`) goes in front of the adapter. It keeps
+  the characters but pulls the drawing toward its own look, so less of the reference style comes through.
+  [The whole gallery with the turbo LoRA](docs/figures/v2_turbo.jpg).
+- Not tested: the Anima-Turbo and Anima-Aesthetic full models, SamplerSPEED (its half-resolution stage
+  was unreliable with the pilot), torch.compile.
+
+## Nodes
+
+| node | |
+|---|---|
+| **Anima Ref Adapter** | The one to use. `MODEL` + `VAE` + reference `IMAGE` + adapter LoRA -> `MODEL` for any sampler. The released adapter files are listed even before download and fetched on first use. The reference is resized to `ref_megapixels` (1.0) keeping its aspect ratio. `ref_guidance` runs as a post-CFG patch, one extra model call per step when it is not 1; `ref_end` stops that call early. |
+| Anima Ref Adapter Loader, Anima Ref Latent, Anima Ref Guider | The separate nodes, for the pilot adapter (it needs the reference at the output size) and the extra guider options `ref_start` and `outside`. [Workflow](workflows/anima_ref_adapter_advanced.json). |
+
+## Recommended settings
+
+| | recommended | notes |
+|---|---|---|
+| base model | Anima base v1.0 | the adapter was trained on it; a turbo LoRA also works (see above) |
+| sampler | any; er_sde or Euler, 30 steps, `simple` | as for Anima without the adapter |
+| `cfg` | 4.5 | text guidance; 1 with a turbo LoRA |
+| `ref_guidance` | 4.5 | 1 = cheaper and weaker; higher = more character detail and style, more saturation |
+| `correction` | `apg` | or `rescale` (phi 0.5) |
+| `ref_end` | 1.0 | ~0.6 is faster with nearly the same image |
+| prompt | quality + `1girl` / `1boy` + `solo` + scene tags | no character name, artist tag or appearance tags; a few appearance tags are fine |
+| other LoRAs | in front of the adapter node | |
+
+## v2: rank 64, asymmetric attention
+
+- **Asymmetric attention.** Target tokens attend to themselves and the reference; reference tokens attend
+  only to themselves and skip the text cross-attention. The reference therefore does not depend on the step,
+  the prompt or the target, so its keys and values are computed once per generation and reused by every
+  step and both CFG branches. The reference may also have a different size than the output.
+- **Larger, more varied data.** 15,600 images generated by Anima: 2,300 characters drawn in 1,952 artist
+  styles (6,600 character x style groups), targets at 0.56-1 MP.
+- **Rank 64** (the pilot is rank 32).
+
+| 832x1216, RTX PRO 6000, CFG | pilot (two-frame) | v2 (asymmetric) | no reference |
+|---|---|---|---|
+| one sampling step | 0.58 s | 0.28 s (+ 0.1 s once to encode the reference) | 0.24 s |
+
+v2 needs the nodes from version 0.2.0 or later. The pilot (`anima_ref_adapter_pilot_r32.safetensors`) stays
+available.
+
+## Gallery (pilot)
 
 Every image below used the prompt `masterpiece, best quality, score_7, newest, highres, absurdres, safe, <gender>, solo, <scene>` with the scene tags shown, the
 reference image on the left, and Euler 28 steps, cfg 4.5, reference guidance 4.5 + APG, context detailer LoRA 0.3, base slider LoRA 0.6, Anima Safe PAG (block 18, scale 1.3, 0.2-0.9). Seeds were not cherry-picked.
@@ -86,53 +201,14 @@ flowchart LR
 - **Separate text and reference guidance** with adaptive projected guidance (APG) keeps colors under
   control at high reference guidance.
 
-Details, data and failure modes: **[technical report](docs/report.md)**.
+v2 replaces the joint frame with asymmetric attention and a cached reference (see [v2](#v2-rank-64-asymmetric-attention)).
 
-## Install
-
-```bash
-cd ComfyUI/custom_nodes
-git clone https://github.com/ElectronGirl/ComfyUI-Anima-Ref-Adapter.git
-```
-
-1. Download [`anima_ref_adapter_pilot_r32.safetensors`](https://huggingface.co/ElectronGirl/anima-ref-adapter/blob/main/anima_ref_adapter_pilot_r32.safetensors) into `ComfyUI/models/loras/`.
-2. You also need Anima base v1.0, the Qwen3-0.6B text encoder and the Qwen-Image VAE from
-   [circlestone-labs/Anima](https://huggingface.co/circlestone-labs/Anima).
-3. Both example workflows use **Patch Sage Attention** from
-   [ComfyUI-KJNodes](https://github.com/kijai/ComfyUI-KJNodes). Install it, or bypass that node
-   (Ctrl+B) if you don't have SageAttention.
-4. Restart ComfyUI and reload the browser tab (Ctrl+F5).
-5. Open [`workflows/anima_ref_adapter.json`](workflows/anima_ref_adapter.json), load a reference image,
-   write a scene-only prompt, queue.
-
-## Nodes
-
-| node | |
-|---|---|
-| **Anima Ref Adapter Loader** | Attaches the adapter LoRA to an Anima `MODEL`. Keep `ref_offset_h` at 1.0 (training value). |
-| **Anima Ref Latent** | Fits the reference into the output size (white letterbox) and VAE-encodes it, plus a half-size encode for multi-resolution samplers. Also returns the empty latent for that size. |
-| **Anima Ref Guider** | `GUIDER` for `SamplerCustomAdvanced`: text `cfg`, `ref_guidance`, `apg` / `rescale` correction. Runs post-CFG patches such as PAG. |
-
-Workflows: [`anima_ref_adapter.json`](workflows/anima_ref_adapter.json) (basic) and
-[`anima_ref_adapter_pag.json`](workflows/anima_ref_adapter_pag.json) (with Anima Safe PAG).
-
-## Recommended settings
-
-| | recommended | notes |
-|---|---|---|
-| base model | Anima base v1.0 | Anima turbo LoRA also works (load it in front of the adapter loader and use its usual steps and cfg); the adapter itself was trained on the base model |
-| compute | bf16 (`ModelComputeDtype`) | Anima overflows in fp16 |
-| sampler | Euler, 28-30 steps, `simple` | single-resolution samplers; SamplerSPEED's half-resolution stage is unreliable |
-| `cfg` | 4.5 | text guidance |
-| `ref_guidance` | 4.5 - 6 | 1 = weak and cheaper; higher = more character detail and style, more saturation |
-| `correction` | `apg` | or `rescale` (phi 0.5) |
-| prompt | quality + gender + `solo` + scene tags | no character name, artist tag or appearance tags |
-| extras (optional) | Anima context-detailer LoRA ~0.3, base-slider LoRA ~0.6, Anima Safe PAG | used for the gallery; ordinary LoRAs go in front of the adapter loader |
+Details, data and failure modes of the pilot: **[technical report](docs/report.md)**.
 
 <details>
 <summary><b>Limitations</b></summary>
 
-- **Pilot release**: 300 training characters, 2,000 steps, rank 32.
+- The pilot was trained on only 300 characters.
 - Identity transfers much better than style; strongly painterly styles barely transfer.
 - Small patterns, scars, earrings and unusual skin tones are often lost; large garments can drift in color.
 - The reference character occasionally reappears as an object in the scene.
@@ -144,11 +220,14 @@ Workflows: [`anima_ref_adapter.json`](workflows/anima_ref_adapter.json) (basic) 
 
 | | status |
 |---|---|
-| Single reference: character + style from one image | **available** (this release) |
-| **Separate character and style references**: character from one image, drawing style from another, or either alone | **coming soon** |
-| Larger training set: 2,000 new characters, each in 3 artist styles | generating |
-| Better transfer of painterly styles and fine details (low-noise training, more data) | planned |
-| Half-resolution training pairs for progressive samplers (SamplerSPEED) | planned |
+| Single reference: character + style from one image | **available**: pilot and v2 |
+| Asymmetric attention with a cached reference (about 2x faster sampling steps) | **available** (v2) |
+| Two characters from two references side by side | **available** (v2) |
+| Separate character and style references | **paused** (experiments only, not released) |
+| Higher-resolution training, better transfer of painterly styles and fine details | **paused** |
+
+Development is paused for lack of funding. The training code is public:
+[ElectronGirl/anima-ref-adapter-research](https://github.com/ElectronGirl/anima-ref-adapter-research).
 
 ## License
 

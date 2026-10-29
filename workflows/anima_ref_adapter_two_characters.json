@@ -1,0 +1,677 @@
+{
+ "last_node_id": 22,
+ "last_link_id": 14,
+ "nodes": [
+  {
+   "id": 1,
+   "type": "UNETLoader",
+   "pos": [
+    40,
+    40
+   ],
+   "size": [
+    320,
+    90
+   ],
+   "flags": {},
+   "order": 0,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "MODEL",
+     "type": "MODEL",
+     "slot_index": 0,
+     "links": [
+      3
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "UNETLoader"
+   },
+   "widgets_values": [
+    "anima-base-v1.0.safetensors",
+    "default"
+   ]
+  },
+  {
+   "id": 2,
+   "type": "CLIPLoader",
+   "pos": [
+    40,
+    170
+   ],
+   "size": [
+    320,
+    110
+   ],
+   "flags": {},
+   "order": 1,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "CLIP",
+     "type": "CLIP",
+     "slot_index": 0,
+     "links": [
+      6,
+      7
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "CLIPLoader"
+   },
+   "widgets_values": [
+    "qwen_3_06b_base.safetensors",
+    "stable_diffusion",
+    "default"
+   ]
+  },
+  {
+   "id": 3,
+   "type": "VAELoader",
+   "pos": [
+    40,
+    320
+   ],
+   "size": [
+    320,
+    60
+   ],
+   "flags": {},
+   "order": 2,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "VAE",
+     "type": "VAE",
+     "slot_index": 0,
+     "links": [
+      4,
+      13
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "VAELoader"
+   },
+   "widgets_values": [
+    "qwen_image_vae.safetensors"
+   ]
+  },
+  {
+   "id": 7,
+   "type": "LoadImage",
+   "pos": [
+    40,
+    420
+   ],
+   "size": [
+    320,
+    400
+   ],
+   "flags": {},
+   "order": 3,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "slot_index": 0,
+     "links": [
+      1
+     ]
+    },
+    {
+     "name": "MASK",
+     "type": "MASK",
+     "slot_index": 1,
+     "links": null
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "ref_police.webp",
+    "image"
+   ],
+   "title": "Reference (left)"
+  },
+  {
+   "id": 21,
+   "type": "LoadImage",
+   "pos": [
+    40,
+    860
+   ],
+   "size": [
+    320,
+    400
+   ],
+   "flags": {},
+   "order": 4,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "slot_index": 0,
+     "links": [
+      2
+     ]
+    },
+    {
+     "name": "MASK",
+     "type": "MASK",
+     "slot_index": 1,
+     "links": null
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "ref_mecha.webp",
+    "image"
+   ],
+   "title": "Reference (right)"
+  },
+  {
+   "id": 22,
+   "type": "ImageStitch",
+   "pos": [
+    400,
+    420
+   ],
+   "size": [
+    320,
+    130
+   ],
+   "flags": {},
+   "order": 5,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "image1",
+     "type": "IMAGE",
+     "link": 1
+    },
+    {
+     "name": "image2",
+     "type": "IMAGE",
+     "link": 2
+    }
+   ],
+   "outputs": [
+    {
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "slot_index": 0,
+     "links": [
+      5
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "ImageStitch"
+   },
+   "widgets_values": [
+    "right",
+    true,
+    0,
+    "white"
+   ]
+  },
+  {
+   "id": 4,
+   "type": "AnimaRefAdapter",
+   "pos": [
+    400,
+    40
+   ],
+   "size": [
+    320,
+    220
+   ],
+   "flags": {},
+   "order": 6,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "model",
+     "type": "MODEL",
+     "link": 3
+    },
+    {
+     "name": "vae",
+     "type": "VAE",
+     "link": 4
+    },
+    {
+     "name": "image",
+     "type": "IMAGE",
+     "link": 5
+    }
+   ],
+   "outputs": [
+    {
+     "name": "MODEL",
+     "type": "MODEL",
+     "slot_index": 0,
+     "links": [
+      8
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "AnimaRefAdapter"
+   },
+   "widgets_values": [
+    "anima_ref_adapter_v2_r64.safetensors",
+    4.5,
+    "apg",
+    1.0,
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "id": 9,
+   "type": "CLIPTextEncode",
+   "pos": [
+    760,
+    40
+   ],
+   "size": [
+    420,
+    200
+   ],
+   "flags": {},
+   "order": 7,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "clip",
+     "type": "CLIP",
+     "link": 6
+    }
+   ],
+   "outputs": [
+    {
+     "name": "CONDITIONING",
+     "type": "CONDITIONING",
+     "slot_index": 0,
+     "links": [
+      9
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "CLIPTextEncode"
+   },
+   "widgets_values": [
+    "masterpiece, best quality, score_7, safe, 2girls, the girl on the left is a policewoman with black hair over one eye, the girl on the right is a mecha girl with aqua hair and mechanical wings, standing side by side, peace sign, smile, city, street, day"
+   ],
+   "title": "Positive"
+  },
+  {
+   "id": 10,
+   "type": "CLIPTextEncode",
+   "pos": [
+    760,
+    280
+   ],
+   "size": [
+    420,
+    140
+   ],
+   "flags": {},
+   "order": 8,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "clip",
+     "type": "CLIP",
+     "link": 7
+    }
+   ],
+   "outputs": [
+    {
+     "name": "CONDITIONING",
+     "type": "CONDITIONING",
+     "slot_index": 0,
+     "links": [
+      10
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "CLIPTextEncode"
+   },
+   "widgets_values": [
+    "worst quality, low quality, score_1, score_2, score_3, artist name, blurry, jpeg artifacts, chromatic aberration"
+   ],
+   "title": "Negative"
+  },
+  {
+   "id": 20,
+   "type": "EmptyLatentImage",
+   "pos": [
+    760,
+    460
+   ],
+   "size": [
+    420,
+    110
+   ],
+   "flags": {},
+   "order": 9,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "LATENT",
+     "type": "LATENT",
+     "slot_index": 0,
+     "links": [
+      11
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "EmptyLatentImage"
+   },
+   "widgets_values": [
+    1216,
+    832,
+    1
+   ]
+  },
+  {
+   "id": 15,
+   "type": "KSampler",
+   "pos": [
+    1220,
+    40
+   ],
+   "size": [
+    320,
+    270
+   ],
+   "flags": {},
+   "order": 10,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "model",
+     "type": "MODEL",
+     "link": 8
+    },
+    {
+     "name": "positive",
+     "type": "CONDITIONING",
+     "link": 9
+    },
+    {
+     "name": "negative",
+     "type": "CONDITIONING",
+     "link": 10
+    },
+    {
+     "name": "latent_image",
+     "type": "LATENT",
+     "link": 11
+    }
+   ],
+   "outputs": [
+    {
+     "name": "LATENT",
+     "type": "LATENT",
+     "slot_index": 0,
+     "links": [
+      12
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "KSampler"
+   },
+   "widgets_values": [
+    20261029,
+    "randomize",
+    30,
+    4.5,
+    "er_sde",
+    "simple",
+    1.0
+   ]
+  },
+  {
+   "id": 16,
+   "type": "VAEDecode",
+   "pos": [
+    1220,
+    350
+   ],
+   "size": [
+    320,
+    50
+   ],
+   "flags": {},
+   "order": 11,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "samples",
+     "type": "LATENT",
+     "link": 12
+    },
+    {
+     "name": "vae",
+     "type": "VAE",
+     "link": 13
+    }
+   ],
+   "outputs": [
+    {
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "slot_index": 0,
+     "links": [
+      14
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "VAEDecode"
+   },
+   "widgets_values": []
+  },
+  {
+   "id": 17,
+   "type": "SaveImage",
+   "pos": [
+    1580,
+    40
+   ],
+   "size": [
+    560,
+    760
+   ],
+   "flags": {},
+   "order": 12,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "images",
+     "type": "IMAGE",
+     "link": 14
+    }
+   ],
+   "outputs": [],
+   "properties": {
+    "Node name for S&R": "SaveImage"
+   },
+   "widgets_values": [
+    "anima_ref_adapter/image"
+   ]
+  },
+  {
+   "id": 19,
+   "type": "MarkdownNote",
+   "pos": [
+    400,
+    600
+   ],
+   "size": [
+    780,
+    520
+   ],
+   "flags": {},
+   "order": 13,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [],
+   "title": "How to use",
+   "properties": {},
+   "widgets_values": [
+    "## Anima Reference Adapter\n\nThe Anima default workflow plus one node. The reference gives **who** is drawn and much of **how**; the prompt gives pose, scene and framing.\n\n- **Prompt**: quality tags, `1girl` / `1boy`, `solo`, then scene tags. No character name, artist tag or outfit tags needed.\n- **Anima Ref Adapter**: put it after the model loader and any LoRAs.\n  - `ref_guidance` 4.5: how hard to push toward the reference (1 = no extra model call, weaker).\n  - `correction` apg: keeps colors in check.\n  - `ref_end` 1.0: set ~0.6 to save time with nearly the same image.\n- Any sampler works. Defaults here: er_sde, simple, 30 steps, cfg 4.5.\n- **Faster**: a turbo LoRA in front of the adapter with 10 steps, cfg 1, ref_guidance 1; SageAttention; EasyCache.\n\n### Two characters\nStitch the two references side by side (core **Image Stitch** node) and write in the prompt who is on the left and who is on the right, with a few words each. Use `2girls` / `1boy, 1girl` instead of `solo`, and a landscape output.\n"
+   ],
+   "color": "#432",
+   "bgcolor": "#653"
+  }
+ ],
+ "links": [
+  [
+   1,
+   7,
+   0,
+   22,
+   0,
+   "IMAGE"
+  ],
+  [
+   2,
+   21,
+   0,
+   22,
+   1,
+   "IMAGE"
+  ],
+  [
+   3,
+   1,
+   0,
+   4,
+   0,
+   "MODEL"
+  ],
+  [
+   4,
+   3,
+   0,
+   4,
+   1,
+   "VAE"
+  ],
+  [
+   5,
+   22,
+   0,
+   4,
+   2,
+   "IMAGE"
+  ],
+  [
+   6,
+   2,
+   0,
+   9,
+   0,
+   "CLIP"
+  ],
+  [
+   7,
+   2,
+   0,
+   10,
+   0,
+   "CLIP"
+  ],
+  [
+   8,
+   4,
+   0,
+   15,
+   0,
+   "MODEL"
+  ],
+  [
+   9,
+   9,
+   0,
+   15,
+   1,
+   "CONDITIONING"
+  ],
+  [
+   10,
+   10,
+   0,
+   15,
+   2,
+   "CONDITIONING"
+  ],
+  [
+   11,
+   20,
+   0,
+   15,
+   3,
+   "LATENT"
+  ],
+  [
+   12,
+   15,
+   0,
+   16,
+   0,
+   "LATENT"
+  ],
+  [
+   13,
+   3,
+   0,
+   16,
+   1,
+   "VAE"
+  ],
+  [
+   14,
+   16,
+   0,
+   17,
+   0,
+   "IMAGE"
+  ]
+ ],
+ "groups": [],
+ "config": {},
+ "extra": {
+  "ds": {
+   "scale": 0.75,
+   "offset": [
+    0,
+    0
+   ]
+  }
+ },
+ "version": 0.4
+}
