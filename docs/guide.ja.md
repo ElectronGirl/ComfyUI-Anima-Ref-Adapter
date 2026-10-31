@@ -4,7 +4,7 @@
 
 このガイドでは、ComfyUI へのアダプターのインストール、最初の画像の生成、プロンプトの書き方、2人のキャラクターを
 一緒に描く方法、設定の調整、よくある問題の解決方法を順に説明します。仕組みと測定結果は
-[README](https://github.com/ElectronGirl/ComfyUI-Anima-Ref-Adapter/blob/main/README.ja.md) をご覧ください。
+[README](https://github.com/ArcAnima/ComfyUI-Anima-Ref-Adapter/blob/main/README.ja.md) をご覧ください。
 
 ## 1. 必要なもの
 
@@ -22,7 +22,7 @@
 
 ```bash
 cd ComfyUI/custom_nodes
-git clone https://github.com/ElectronGirl/ComfyUI-Anima-Ref-Adapter.git
+git clone https://github.com/ArcAnima/ComfyUI-Anima-Ref-Adapter.git
 ```
 
 ComfyUI を再起動してください。git がない場合は、GitHub から ZIP をダウンロードし（Code → Download ZIP）、
@@ -30,7 +30,7 @@ ComfyUI を再起動してください。git がない場合は、GitHub から 
 
 ## 3. 最初の画像
 
-1. [`anima_ref_adapter.json`](https://github.com/ElectronGirl/ComfyUI-Anima-Ref-Adapter/blob/main/workflows/anima_ref_adapter.json)
+1. [`anima_ref_adapter.json`](https://github.com/ArcAnima/ComfyUI-Anima-Ref-Adapter/blob/main/workflows/anima_ref_adapter.json)
    をダウンロードし、ComfyUI の画面にドラッグします。Anima 標準の text-to-image ワークフローに、
    **Anima Ref Adapter** ノードを1つ（モデルローダーと KSampler の間に）加えたものです。
 2. **Load Image** ノードで参照画像を選びます。
@@ -38,7 +38,7 @@ ComfyUI を再起動してください。git がない場合は、GitHub から 
 4. 実行します。初回は `anima_ref_adapter_v2_r64.safetensors`（183MB）を `ComfyUI/models/loras/` に
    ダウンロードし、2回目以降はすぐに始まります。
 
-<img src="https://raw.githubusercontent.com/ElectronGirl/ComfyUI-Anima-Ref-Adapter/main/docs/showcase/v2_police.jpg" width="100%" alt="参照画像と結果">
+<img src="https://raw.githubusercontent.com/ArcAnima/ComfyUI-Anima-Ref-Adapter/main/docs/showcase/v2_police.jpg" width="100%" alt="参照画像と結果">
 
 ## 4. プロンプトの書き方
 
@@ -66,9 +66,9 @@ ComfyUI を再起動してください。git がない場合は、GitHub から 
 
 ## 5. 2人のキャラクター
 
-<img src="https://raw.githubusercontent.com/ElectronGirl/ComfyUI-Anima-Ref-Adapter/main/docs/showcase/v2_duo_police_mecha.jpg" width="100%" alt="参照画像2枚と結果">
+<img src="https://raw.githubusercontent.com/ArcAnima/ComfyUI-Anima-Ref-Adapter/main/docs/showcase/v2_duo_police_mecha.jpg" width="100%" alt="参照画像2枚と結果">
 
-1. [`anima_ref_adapter_two_characters.json`](https://github.com/ElectronGirl/ComfyUI-Anima-Ref-Adapter/blob/main/workflows/anima_ref_adapter_two_characters.json)
+1. [`anima_ref_adapter_two_characters.json`](https://github.com/ArcAnima/ComfyUI-Anima-Ref-Adapter/blob/main/workflows/anima_ref_adapter_two_characters.json)
    を開きます。2つの **Load Image** ノードを、標準の **Image Stitch** ノードが左右につなぎます。
 2. 1枚目に左のキャラクター、2枚目に右のキャラクターを読み込みます。
 3. `solo` の代わりに `2girls`（または `1boy, 1girl`、`2boys`）と書き、どちらが誰かを短く書きます:
@@ -112,7 +112,7 @@ ComfyUI を再起動してください。git がない場合は、GitHub から 
 | 参照キャラクターがシーンの中にポスターやフィギュアとして再登場する | 既知の制限です。シードを変えるか、`ref_guidance` を下げてください。 |
 | 自動ダウンロードに失敗する | [`anima_ref_adapter_v2_r64.safetensors`](https://huggingface.co/ElectronGirl/anima-ref-adapter/blob/main/anima_ref_adapter_v2_r64.safetensors) を手動でダウンロードし、`ComfyUI/models/loras/` に置きます。 |
 | メモリが足りない | `ref_megapixels` を下げるか、出力サイズを小さくします。 |
-| パイロット版アダプターを使いたい | [`anima_ref_adapter_advanced.json`](https://github.com/ElectronGirl/ComfyUI-Anima-Ref-Adapter/blob/main/workflows/anima_ref_adapter_advanced.json) を使ってください。パイロット版は参照画像が出力と同じサイズである必要があります。 |
+| パイロット版アダプターを使いたい | [`anima_ref_adapter_advanced.json`](https://github.com/ArcAnima/ComfyUI-Anima-Ref-Adapter/blob/main/workflows/anima_ref_adapter_advanced.json) を使ってください。パイロット版は参照画像が出力と同じサイズである必要があります。 |
 
 ## 9. Forge Neo
 

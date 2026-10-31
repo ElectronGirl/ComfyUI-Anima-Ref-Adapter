@@ -4,7 +4,7 @@
 
 This guide walks through installing the adapter in ComfyUI, making a first image, writing prompts, using
 two characters, tuning the settings and fixing common problems. For the method and measurements, see the
-[README](https://github.com/ElectronGirl/ComfyUI-Anima-Ref-Adapter).
+[README](https://github.com/ArcAnima/ComfyUI-Anima-Ref-Adapter).
 
 ## 1. What you need
 
@@ -22,7 +22,7 @@ The adapter weights do not need a separate download: the node fetches them on fi
 
 ```bash
 cd ComfyUI/custom_nodes
-git clone https://github.com/ElectronGirl/ComfyUI-Anima-Ref-Adapter.git
+git clone https://github.com/ArcAnima/ComfyUI-Anima-Ref-Adapter.git
 ```
 
 Restart ComfyUI. Without git, download the repository as a ZIP from GitHub (Code → Download ZIP) and
@@ -30,7 +30,7 @@ unpack it into `ComfyUI/custom_nodes/`.
 
 ## 3. Your first image
 
-1. Download [`anima_ref_adapter.json`](https://github.com/ElectronGirl/ComfyUI-Anima-Ref-Adapter/blob/main/workflows/anima_ref_adapter.json)
+1. Download [`anima_ref_adapter.json`](https://github.com/ArcAnima/ComfyUI-Anima-Ref-Adapter/blob/main/workflows/anima_ref_adapter.json)
    and drag it onto the ComfyUI canvas. It is the standard Anima text-to-image workflow with one extra node,
    **Anima Ref Adapter**, between the model loader and the KSampler.
 2. In **Load Image**, choose your reference image.
@@ -38,7 +38,7 @@ unpack it into `ComfyUI/custom_nodes/`.
 4. Queue. The first run downloads `anima_ref_adapter_v2_r64.safetensors` (183 MB) into
    `ComfyUI/models/loras/`; later runs start right away.
 
-<img src="https://raw.githubusercontent.com/ElectronGirl/ComfyUI-Anima-Ref-Adapter/main/docs/showcase/v2_police.jpg" width="100%" alt="reference and results">
+<img src="https://raw.githubusercontent.com/ArcAnima/ComfyUI-Anima-Ref-Adapter/main/docs/showcase/v2_police.jpg" width="100%" alt="reference and results">
 
 ## 4. Writing the prompt
 
@@ -66,9 +66,9 @@ Tips:
 
 ## 5. Two characters
 
-<img src="https://raw.githubusercontent.com/ElectronGirl/ComfyUI-Anima-Ref-Adapter/main/docs/showcase/v2_duo_police_mecha.jpg" width="100%" alt="two references and the result">
+<img src="https://raw.githubusercontent.com/ArcAnima/ComfyUI-Anima-Ref-Adapter/main/docs/showcase/v2_duo_police_mecha.jpg" width="100%" alt="two references and the result">
 
-1. Open [`anima_ref_adapter_two_characters.json`](https://github.com/ElectronGirl/ComfyUI-Anima-Ref-Adapter/blob/main/workflows/anima_ref_adapter_two_characters.json).
+1. Open [`anima_ref_adapter_two_characters.json`](https://github.com/ArcAnima/ComfyUI-Anima-Ref-Adapter/blob/main/workflows/anima_ref_adapter_two_characters.json).
    It has two **Load Image** nodes joined side by side by the core **Image Stitch** node.
 2. Load the left character in the first image and the right character in the second.
 3. Replace `solo` with `2girls` (or `1boy, 1girl`, `2boys`) and say who is where, with a few words each:
@@ -112,7 +112,7 @@ Adapter.
 | The reference character appears again as a poster or a figure in the scene | A known limitation; change the seed or lower `ref_guidance`. |
 | The download fails | Download [`anima_ref_adapter_v2_r64.safetensors`](https://huggingface.co/ElectronGirl/anima-ref-adapter/blob/main/anima_ref_adapter_v2_r64.safetensors) by hand into `ComfyUI/models/loras/`. |
 | Out of memory | Lower `ref_megapixels`, or use a smaller output size. |
-| You want the pilot adapter | Use [`anima_ref_adapter_advanced.json`](https://github.com/ElectronGirl/ComfyUI-Anima-Ref-Adapter/blob/main/workflows/anima_ref_adapter_advanced.json): the pilot needs the reference at the output size. |
+| You want the pilot adapter | Use [`anima_ref_adapter_advanced.json`](https://github.com/ArcAnima/ComfyUI-Anima-Ref-Adapter/blob/main/workflows/anima_ref_adapter_advanced.json): the pilot needs the reference at the output size. |
 
 ## 9. Forge Neo
 

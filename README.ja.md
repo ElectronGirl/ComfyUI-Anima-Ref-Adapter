@@ -7,7 +7,7 @@
 **参照画像からキャラクターと画風を、プロンプトからポーズ・場所・構図を。**
 
 [![Weights](https://img.shields.io/badge/%F0%9F%A4%97%20weights-anima--ref--adapter-ffcc4d)](https://huggingface.co/ElectronGirl/anima-ref-adapter)
-[![Nodes](https://img.shields.io/badge/%F0%9F%A7%A9%20ComfyUI-nodes-1f6feb)](https://github.com/ElectronGirl/ComfyUI-Anima-Ref-Adapter)
+[![Nodes](https://img.shields.io/badge/%F0%9F%A7%A9%20ComfyUI-nodes-1f6feb)](https://github.com/ArcAnima/ComfyUI-Anima-Ref-Adapter)
 [![Training code](https://img.shields.io/badge/%F0%9F%94%AC%20training-code-8a63d2)](https://github.com/ElectronGirl/anima-ref-adapter-research)
 
 [ショーケース](#ショーケース) · [クイックスタート](#クイックスタート) · [使い方ガイド](docs/guide.ja.md) · [速度](#速度と互換性) · [学習コード](https://github.com/ElectronGirl/anima-ref-adapter-research)
@@ -73,7 +73,7 @@ cfg 4.5、`ref_guidance` 4.5 + APG、プロンプトは `masterpiece, best quali
 
 ```bash
 cd ComfyUI/custom_nodes
-git clone https://github.com/ElectronGirl/ComfyUI-Anima-Ref-Adapter.git
+git clone https://github.com/ArcAnima/ComfyUI-Anima-Ref-Adapter.git
 ```
 
 1. Anima base v1.0、Qwen3-0.6B テキストエンコーダー、Qwen-Image VAE を

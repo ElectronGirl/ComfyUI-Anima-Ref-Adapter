@@ -4,7 +4,7 @@
 
 이 가이드는 ComfyUI에 어댑터를 설치하고, 첫 이미지를 만들고, 프롬프트를 쓰고, 두 캐릭터를 함께 그리고,
 설정을 조절하고, 자주 생기는 문제를 해결하는 방법을 순서대로 설명합니다. 작동 원리와 측정 결과는
-[README](https://github.com/ElectronGirl/ComfyUI-Anima-Ref-Adapter/blob/main/README.ko.md)에 있습니다.
+[README](https://github.com/ArcAnima/ComfyUI-Anima-Ref-Adapter/blob/main/README.ko.md)에 있습니다.
 
 ## 1. 준비물
 
@@ -22,7 +22,7 @@
 
 ```bash
 cd ComfyUI/custom_nodes
-git clone https://github.com/ElectronGirl/ComfyUI-Anima-Ref-Adapter.git
+git clone https://github.com/ArcAnima/ComfyUI-Anima-Ref-Adapter.git
 ```
 
 ComfyUI를 재시작합니다. git이 없다면 GitHub에서 ZIP으로 받아(Code → Download ZIP)
@@ -30,7 +30,7 @@ ComfyUI를 재시작합니다. git이 없다면 GitHub에서 ZIP으로 받아(Co
 
 ## 3. 첫 이미지 만들기
 
-1. [`anima_ref_adapter.json`](https://github.com/ElectronGirl/ComfyUI-Anima-Ref-Adapter/blob/main/workflows/anima_ref_adapter.json)을
+1. [`anima_ref_adapter.json`](https://github.com/ArcAnima/ComfyUI-Anima-Ref-Adapter/blob/main/workflows/anima_ref_adapter.json)을
    받아서 ComfyUI 화면에 끌어다 놓습니다. Anima의 기본 text-to-image 워크플로에 **Anima Ref Adapter** 노드
    하나를 모델 로더와 KSampler 사이에 더한 것입니다.
 2. **Load Image** 노드에서 레퍼런스 이미지를 고릅니다.
@@ -38,7 +38,7 @@ ComfyUI를 재시작합니다. git이 없다면 GitHub에서 ZIP으로 받아(Co
 4. 실행합니다. 처음 실행할 때 `anima_ref_adapter_v2_r64.safetensors`(183MB)를 `ComfyUI/models/loras/`로
    받아오고, 그다음부터는 바로 시작합니다.
 
-<img src="https://raw.githubusercontent.com/ElectronGirl/ComfyUI-Anima-Ref-Adapter/main/docs/showcase/v2_police.jpg" width="100%" alt="레퍼런스와 결과">
+<img src="https://raw.githubusercontent.com/ArcAnima/ComfyUI-Anima-Ref-Adapter/main/docs/showcase/v2_police.jpg" width="100%" alt="레퍼런스와 결과">
 
 ## 4. 프롬프트 쓰는 법
 
@@ -66,9 +66,9 @@ ComfyUI를 재시작합니다. git이 없다면 GitHub에서 ZIP으로 받아(Co
 
 ## 5. 두 캐릭터 함께 그리기
 
-<img src="https://raw.githubusercontent.com/ElectronGirl/ComfyUI-Anima-Ref-Adapter/main/docs/showcase/v2_duo_police_mecha.jpg" width="100%" alt="레퍼런스 두 장과 결과">
+<img src="https://raw.githubusercontent.com/ArcAnima/ComfyUI-Anima-Ref-Adapter/main/docs/showcase/v2_duo_police_mecha.jpg" width="100%" alt="레퍼런스 두 장과 결과">
 
-1. [`anima_ref_adapter_two_characters.json`](https://github.com/ElectronGirl/ComfyUI-Anima-Ref-Adapter/blob/main/workflows/anima_ref_adapter_two_characters.json)을
+1. [`anima_ref_adapter_two_characters.json`](https://github.com/ArcAnima/ComfyUI-Anima-Ref-Adapter/blob/main/workflows/anima_ref_adapter_two_characters.json)을
    엽니다. **Load Image** 노드 두 개를 기본 **Image Stitch** 노드가 좌우로 이어 붙입니다.
 2. 첫 번째 이미지에는 왼쪽에 올 캐릭터를, 두 번째 이미지에는 오른쪽에 올 캐릭터를 넣습니다.
 3. `solo` 대신 `2girls`(또는 `1boy, 1girl`, `2boys`)를 쓰고, 누가 어느 쪽인지 몇 단어로 적습니다.
@@ -111,7 +111,7 @@ ComfyUI를 재시작합니다. git이 없다면 GitHub에서 ZIP으로 받아(Co
 | 레퍼런스 캐릭터가 장면 안에 포스터나 피규어로 다시 나옵니다 | 알려진 한계입니다. 시드를 바꾸거나 `ref_guidance`를 낮춥니다. |
 | 자동 다운로드가 실패합니다 | [`anima_ref_adapter_v2_r64.safetensors`](https://huggingface.co/ElectronGirl/anima-ref-adapter/blob/main/anima_ref_adapter_v2_r64.safetensors)를 직접 받아 `ComfyUI/models/loras/`에 넣습니다. |
 | 메모리가 부족합니다 | `ref_megapixels`를 낮추거나 출력 크기를 줄입니다. |
-| 파일럿 어댑터를 쓰고 싶습니다 | [`anima_ref_adapter_advanced.json`](https://github.com/ElectronGirl/ComfyUI-Anima-Ref-Adapter/blob/main/workflows/anima_ref_adapter_advanced.json)을 씁니다. 파일럿은 레퍼런스가 출력과 같은 크기여야 합니다. |
+| 파일럿 어댑터를 쓰고 싶습니다 | [`anima_ref_adapter_advanced.json`](https://github.com/ArcAnima/ComfyUI-Anima-Ref-Adapter/blob/main/workflows/anima_ref_adapter_advanced.json)을 씁니다. 파일럿은 레퍼런스가 출력과 같은 크기여야 합니다. |
 
 ## 9. Forge Neo
 

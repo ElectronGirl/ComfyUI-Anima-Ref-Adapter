@@ -7,9 +7,9 @@
 **Character and style from a reference image. Pose, place and framing from your prompt.**
 
 [![Weights](https://img.shields.io/badge/%F0%9F%A4%97%20weights-anima--ref--adapter-ffcc4d)](https://huggingface.co/ElectronGirl/anima-ref-adapter)
-[![Nodes](https://img.shields.io/badge/%F0%9F%A7%A9%20ComfyUI-nodes-1f6feb)](https://github.com/ElectronGirl/ComfyUI-Anima-Ref-Adapter)
+[![Nodes](https://img.shields.io/badge/%F0%9F%A7%A9%20ComfyUI-nodes-1f6feb)](https://github.com/ArcAnima/ComfyUI-Anima-Ref-Adapter)
 [![Training code](https://img.shields.io/badge/%F0%9F%94%AC%20training-code-8a63d2)](https://github.com/ElectronGirl/anima-ref-adapter-research)
-[![Code license](https://img.shields.io/badge/code-Apache--2.0-2ea44f)](https://github.com/ElectronGirl/ComfyUI-Anima-Ref-Adapter/blob/main/LICENSE)
+[![Code license](https://img.shields.io/badge/code-Apache--2.0-2ea44f)](https://github.com/ArcAnima/ComfyUI-Anima-Ref-Adapter/blob/main/LICENSE)
 [![Weights license](https://img.shields.io/badge/weights-CircleStone%20Non--Commercial-555)](https://huggingface.co/ElectronGirl/anima-ref-adapter/blob/main/LICENSE.md)
 
 [Showcase](#showcase) · [Quick start](#quick-start) · [Guide](docs/guide.en.md) · [Speed](#speed-and-compatibility) · [Nodes](#nodes) · [How it works](#how-it-works) · [Training code](https://github.com/ElectronGirl/anima-ref-adapter-research)
@@ -75,7 +75,7 @@ landscape size. [Workflow](workflows/anima_ref_adapter_two_characters.json).
 
 ```bash
 cd ComfyUI/custom_nodes
-git clone https://github.com/ElectronGirl/ComfyUI-Anima-Ref-Adapter.git
+git clone https://github.com/ArcAnima/ComfyUI-Anima-Ref-Adapter.git
 ```
 
 1. Get Anima base v1.0, the Qwen3-0.6B text encoder and the Qwen-Image VAE from
@@ -234,6 +234,6 @@ This project is not affiliated with or endorsed by CircleStone Labs.
   title  = {Anima Reference Adapter: Single-Image Character and Style Transfer with an Offset-RoPE Reference Frame},
   author = {ElectronGirl},
   year   = {2026},
-  url    = {https://github.com/ElectronGirl/ComfyUI-Anima-Ref-Adapter}
+  url    = {https://github.com/ArcAnima/ComfyUI-Anima-Ref-Adapter}
 }
 ```

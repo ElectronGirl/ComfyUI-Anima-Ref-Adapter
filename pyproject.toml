@@ -6,4 +6,4 @@ license = { file = "LICENSE" }
 dependencies = []
 
 [project.urls]
-Repository = "https://github.com/ElectronGirl/ComfyUI-Anima-Ref-Adapter"
+Repository = "https://github.com/ArcAnima/ComfyUI-Anima-Ref-Adapter"

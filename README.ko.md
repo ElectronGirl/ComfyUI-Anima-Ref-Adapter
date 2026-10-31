@@ -7,7 +7,7 @@
 **레퍼런스 이미지에서 캐릭터와 그림체를, 프롬프트에서 자세·장소·구도를.**
 
 [![Weights](https://img.shields.io/badge/%F0%9F%A4%97%20weights-anima--ref--adapter-ffcc4d)](https://huggingface.co/ElectronGirl/anima-ref-adapter)
-[![Nodes](https://img.shields.io/badge/%F0%9F%A7%A9%20ComfyUI-nodes-1f6feb)](https://github.com/ElectronGirl/ComfyUI-Anima-Ref-Adapter)
+[![Nodes](https://img.shields.io/badge/%F0%9F%A7%A9%20ComfyUI-nodes-1f6feb)](https://github.com/ArcAnima/ComfyUI-Anima-Ref-Adapter)
 [![Training code](https://img.shields.io/badge/%F0%9F%94%AC%20training-code-8a63d2)](https://github.com/ElectronGirl/anima-ref-adapter-research)
 
 [쇼케이스](#쇼케이스) · [빠른 시작](#빠른-시작) · [사용 가이드](docs/guide.ko.md) · [속도](#속도와-호환성) · [학습 코드](https://github.com/ElectronGirl/anima-ref-adapter-research)
@@ -73,7 +73,7 @@ cfg 4.5, `ref_guidance` 4.5 + APG, 프롬프트는 `masterpiece, best quality, s
 
 ```bash
 cd ComfyUI/custom_nodes
-git clone https://github.com/ElectronGirl/ComfyUI-Anima-Ref-Adapter.git
+git clone https://github.com/ArcAnima/ComfyUI-Anima-Ref-Adapter.git
 ```
 
 1. Anima base v1.0, Qwen3-0.6B 텍스트 인코더, Qwen-Image VAE를
