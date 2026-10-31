@@ -11,7 +11,6 @@
 [![Training code](https://img.shields.io/badge/%F0%9F%94%AC%20training-code-8a63d2)](https://github.com/ElectronGirl/anima-ref-adapter-research)
 [![Code license](https://img.shields.io/badge/code-Apache--2.0-2ea44f)](https://github.com/ElectronGirl/ComfyUI-Anima-Ref-Adapter/blob/main/LICENSE)
 [![Weights license](https://img.shields.io/badge/weights-CircleStone%20Non--Commercial-555)](https://huggingface.co/ElectronGirl/anima-ref-adapter/blob/main/LICENSE.md)
-[![Ko-fi](https://img.shields.io/badge/Ko--fi-support%20training-ff5e5b?logo=ko-fi&logoColor=white)](https://ko-fi.com/electrongirl)
 
 [Showcase](#showcase) · [Quick start](#quick-start) · [Guide](docs/guide.en.md) · [Speed](#speed-and-compatibility) · [Nodes](#nodes) · [How it works](#how-it-works) · [Training code](https://github.com/ElectronGirl/anima-ref-adapter-research)
 
@@ -29,8 +28,7 @@ so it works for original characters too. Two references side by side give two ch
 > [!NOTE]
 > **Development is paused for lack of funding.** Further training is not possible for now, and the planned
 > separate character and style references are not released. The training code, data generation and
-> experiment log are public in **[anima-ref-adapter-research](https://github.com/ElectronGirl/anima-ref-adapter-research)**. To support further training:
-> **[Ko-fi](https://ko-fi.com/electrongirl)**.
+> experiment log are public in **[anima-ref-adapter-research](https://github.com/ElectronGirl/anima-ref-adapter-research)**.
 
 ## What's new in v2
 
@@ -222,11 +220,6 @@ appearance tags.
 | Two characters from two references side by side | ✅ v2 |
 | Separate character and style references | ⏸️ paused (experiments only) |
 | Higher-resolution training, better painterly styles and fine details | ⏸️ paused |
-
-## Support
-
-Development is paused for lack of funding. If the adapter is useful to you, you can support further
-training (longer runs, separate character and style references) on **[Ko-fi](https://ko-fi.com/electrongirl)**.
 
 ## License
 

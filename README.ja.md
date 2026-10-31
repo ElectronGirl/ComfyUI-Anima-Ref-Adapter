@@ -9,7 +9,6 @@
 [![Weights](https://img.shields.io/badge/%F0%9F%A4%97%20weights-anima--ref--adapter-ffcc4d)](https://huggingface.co/ElectronGirl/anima-ref-adapter)
 [![Nodes](https://img.shields.io/badge/%F0%9F%A7%A9%20ComfyUI-nodes-1f6feb)](https://github.com/ElectronGirl/ComfyUI-Anima-Ref-Adapter)
 [![Training code](https://img.shields.io/badge/%F0%9F%94%AC%20training-code-8a63d2)](https://github.com/ElectronGirl/anima-ref-adapter-research)
-[![Ko-fi](https://img.shields.io/badge/Ko--fi-support%20training-ff5e5b?logo=ko-fi&logoColor=white)](https://ko-fi.com/electrongirl)
 
 [ショーケース](#ショーケース) · [クイックスタート](#クイックスタート) · [使い方ガイド](docs/guide.ja.md) · [速度](#速度と互換性) · [学習コード](https://github.com/ElectronGirl/anima-ref-adapter-research)
 
@@ -27,7 +26,7 @@
 > [!NOTE]
 > **資金不足のため開発を休止しています。** 現在は追加の学習ができず、予定していたキャラクターと画風を
 > 別々に指定する参照機能は公開できていません。学習コード、データ生成コード、実験記録は
-> **[anima-ref-adapter-research](https://github.com/ElectronGirl/anima-ref-adapter-research)** で公開しています。追加学習の支援は **[Ko-fi](https://ko-fi.com/electrongirl)** からお願いします。
+> **[anima-ref-adapter-research](https://github.com/ElectronGirl/anima-ref-adapter-research)** で公開しています。
 
 ## v2 の新機能
 
@@ -162,10 +161,6 @@ CFG の分岐に依存せず、ブロックごとの key/value を画像1枚に�
 | 参照画像2枚を並べて2人のキャラクター | ✅ v2 |
 | キャラクターと画風を別々に指定する参照 | ⏸️ 休止（実験のみ） |
 | 高解像度での学習、筆致の強い画風と細部の改善 | ⏸️ 休止 |
-
-## 支援
-
-資金不足のため開発を休止しています。このアダプターが役に立ったら、**[Ko-fi](https://ko-fi.com/electrongirl)** から追加学習（より長い学習、キャラクターと画風を別々に指定する参照）を支援できます。
 
 ## ライセンス
 

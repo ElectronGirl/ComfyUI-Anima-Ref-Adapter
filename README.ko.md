@@ -9,7 +9,6 @@
 [![Weights](https://img.shields.io/badge/%F0%9F%A4%97%20weights-anima--ref--adapter-ffcc4d)](https://huggingface.co/ElectronGirl/anima-ref-adapter)
 [![Nodes](https://img.shields.io/badge/%F0%9F%A7%A9%20ComfyUI-nodes-1f6feb)](https://github.com/ElectronGirl/ComfyUI-Anima-Ref-Adapter)
 [![Training code](https://img.shields.io/badge/%F0%9F%94%AC%20training-code-8a63d2)](https://github.com/ElectronGirl/anima-ref-adapter-research)
-[![Ko-fi](https://img.shields.io/badge/Ko--fi-support%20training-ff5e5b?logo=ko-fi&logoColor=white)](https://ko-fi.com/electrongirl)
 
 [쇼케이스](#쇼케이스) · [빠른 시작](#빠른-시작) · [사용 가이드](docs/guide.ko.md) · [속도](#속도와-호환성) · [학습 코드](https://github.com/ElectronGirl/anima-ref-adapter-research)
 
@@ -27,7 +26,7 @@
 > [!NOTE]
 > **자금 부족으로 개발이 중단되었습니다.** 지금은 추가 학습을 할 수 없고, 계획했던 캐릭터·그림체 분리
 > 레퍼런스는 공개하지 못했습니다. 학습 코드와 데이터 생성 코드, 실험 기록은
-> **[anima-ref-adapter-research](https://github.com/ElectronGirl/anima-ref-adapter-research)**에 공개되어 있습니다. 추가 학습을 후원하려면 **[Ko-fi](https://ko-fi.com/electrongirl)**를 이용해 주세요.
+> **[anima-ref-adapter-research](https://github.com/ElectronGirl/anima-ref-adapter-research)**에 공개되어 있습니다.
 
 ## v2의 새로운 점
 
@@ -162,10 +161,6 @@ RoPE 좌표에 놓이기 때문에, 자세를 그대로 베끼지 않고 외형�
 | 레퍼런스 두 장을 나란히 두어 두 캐릭터 | ✅ v2 |
 | 캐릭터·그림체 분리 레퍼런스 | ⏸️ 중단 (실험만 진행) |
 | 고해상도 학습, 붓질이 강한 그림체와 세부 개선 | ⏸️ 중단 |
-
-## 후원
-
-자금 부족으로 개발이 중단되었습니다. 이 어댑터가 유용했다면 **[Ko-fi](https://ko-fi.com/electrongirl)**에서 추가 학습(더 긴 학습, 캐릭터·그림체 분리 레퍼런스)을 후원할 수 있습니다.
 
 ## 라이선스
 
